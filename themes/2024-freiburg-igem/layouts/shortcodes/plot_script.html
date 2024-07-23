@@ -1,0 +1,155 @@
+<!-- Input box for excel data (x and y values) -->
+<label class="f6 b db mb1 mt3 sans-serif mid-gray" for="line_plot_input">Enter your data below</label>
+<textarea id="line_plot_input" class="ba bw1 br3 mb1 w-100 f5 pv3 ph3 bg-light-pink" required="" placeholder=" " aria-labelledby="email"></textarea>
+<!-- Input field for plot title -->
+<label class="f6 b db mb1 mt3 sans-serif mid-gray" for="plot_title_input">Enter plot title</label>
+<input id="plot_title_input" class="ba bw1 br3 mb1 w-100 f5 pv3 ph3 bg-lightest-blue" required="" placeholder=" ">
+<!-- Input field for x label -->
+<label class="f6 b db mb1 mt3 sans-serif mid-gray" for="x_axis_label_input">Enter x-axis label</label>
+<input id="x_axis_label_input" class="ba bw1 br3 mb1 w-100 f5 pv3 ph3 bg-lightest-blue" required="" placeholder=" ">
+<!-- Input field for y label -->
+<label class="f6 b db mb1 mt3 sans-serif mid-gray" for="y_axis_label_input">Enter y-axis label</label>
+<input id="y_axis_label_input" class="ba bw1 br3 mb1 w-100 f5 pv3 ph3 bg-lightest-blue" required="" placeholder=" ">
+
+
+<!-- plot settings -->
+<div class="ma3">
+    <div>
+        <label for="plot-select">Choose plot style:</label>
+
+        <select name="plots" id="plot-select">
+            <option value="lines+markers">Line Plot</option>
+            <option value="markers">Dot Plot</option>
+            <!-- Add more options as needed -->
+        </select>
+
+    </div>
+    <div>
+        <label for="linestyle-select">Choose line shape:</label>
+
+        <select name="plots" id="linestyle-select">
+            <option value="">-- optional --</option>
+            <option value="spline">spline</option>
+            <option value="linear">linear</option>
+            <!-- Add more options as needed -->
+        </select>
+
+    </div>
+</div>
+
+
+
+<div class="ma3"><button onclick="plotData()">Plot Data</button></div>
+
+<!-- div where line gets plotted -->
+<div id="line_plot"></div>
+
+<script src="https://cdn.plot.ly/plotly-2.32.0.min.js" charset="utf-8"></script>
+
+
+
+<script defer>
+
+var mode_style;
+var line_style;
+// Wait for the DOM to be fully loaded
+document.addEventListener('DOMContentLoaded', function() {
+    // Get the select element by its ID
+    var selectElement = document.getElementById('plot-select');
+
+    // Add an event listener for the 'change' event
+    selectElement.addEventListener('change', function() {
+        // Access the selected value
+        mode_style = this.value;
+        // Log the selected value to the console (or use it as needed)
+        console.log(mode_style);
+    });
+
+    // Get the select element by its ID
+    var selectElement = document.getElementById('linestyle-select');
+
+    // Add an event listener for the 'change' event
+    selectElement.addEventListener('change', function() {
+        // Access the selected value
+        line_style = this.value;
+        // Log the selected value to the console (or use it as needed)
+        console.log(line_style);
+    });
+});
+console.log(line_style);
+
+// plot function
+function plotData() {
+    const dataString = document.getElementById('line_plot_input').value.toString();
+    //console.log(dataString)
+
+    // Step 2: Split the data string into rows
+    const rows = dataString.trim().split('\n');
+    //console.log(rows)
+    // Step 3: Determine the number of columns by splitting the first row
+    const numColumns = rows[0].split('\t').length;
+
+    // Step 4: Initialize arrays for each column dynamically
+    let columns = [];
+    for (let i = 0; i < numColumns; i++) {
+        columns.push([]);
+    }
+
+    // Step 5: Loop through the rows and split each row into values
+    for (let i = 1; i < rows.length; i++) {
+        const values = rows[i].split('\t');
+        for (let j = 0; j < numColumns; j++) {
+            columns[j].push(parseFloat(values[j]));
+        }
+    }
+
+    // Create an array to hold the data
+    var data = [];
+    console.log(data)
+
+    // Create array for names and modes to iterate over
+    const column_names = rows[0].split('\t');
+    const line_styles = ['', 'solid', 'dash', 'dot', 'longdash', 'dashdot', 'longdashdot']
+    const color_palette = ['', '#06d7fc', '#f51889', '#fbd604', '#19e7ca', '#1e122a', '#0522a4']
+
+
+
+    // Create a trace for each y-column
+    for (let i = 1; i < numColumns; i++) {
+        var trace = {
+            x: columns[0],
+            y: columns[i],
+            mode: mode_style, 
+            type: 'scatter',
+            name: column_names[i],
+            line: {
+                shape: line_style,
+                color: color_palette[i], // Change the color of the line
+                width: 3, // Change the width of the line
+                dash: line_styles[i] // Change the shape of the line
+            }
+        };
+        data.push(trace);
+    }
+
+    // Get the values of the input fields
+    const plotTitle = document.getElementById('plot_title_input').value;
+    const xAxisLabel = document.getElementById('x_axis_label_input').value;
+    const yAxisLabel = document.getElementById('y_axis_label_input').value;
+
+
+    // Create the layout object
+    var layout = {
+        title: plotTitle,
+        xaxis: {
+            title: xAxisLabel
+        },
+        yaxis: {
+            title: yAxisLabel
+        }
+    };
+
+    // Plot the data
+    Plotly.newPlot(line_plot, data, layout);
+}
+</script>

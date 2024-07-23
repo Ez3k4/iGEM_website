@@ -1,0 +1,8 @@
+<!-- layouts/partials/sidebar.html -->
+<aside id="sidebar">
+  <ul>
+  {{ range .Page.Params.toc }}
+      <li><a href="#{{ .id }}">{{ .text }}</a></li>
+  {{ end }}
+  </ul>
+</aside>

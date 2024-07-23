@@ -1,0 +1,55 @@
+/* CSS */
+:root {
+    --header-height: 0px; /* Default value */
+    --banner-hero-bottom: 0px; /* Default value */
+}
+
+.fixed-sidebar {
+    position: fixed !important;
+    top: var(--header-height) !important; /* Use the custom property */
+}
+
+#sidebar {
+/*     position: fixed !important; */
+    position: absolute;
+    top: var(--banner-hero-bottom); /* Use the custom property */
+    left: 0;
+    height: 100%;
+    overflow: auto;
+    color: black;
+    cursor: pointer;
+    font-size: large;
+    line-height: 2;
+    a:visited{
+        color: black;
+    }
+    a:hover{
+        font-weight: bold;
+    }
+    a{
+        text-decoration: none;
+    }
+    ul{
+        list-style-type: none
+    }
+    } /* END: ed8c6549bwf9 */
+    /* Add more styles as needed */
+
+@media screen and (max-width: 1070px) {
+    #sidebar {
+        display: none;
+    }
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+/* Active state for subchapters */
+#sidebar ul li a.active {
+    background-color:#FBD604;
+    color: black; 
+    padding: 5px 5px;
+    border-radius: 5px;
+
+}

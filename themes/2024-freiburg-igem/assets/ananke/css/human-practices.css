@@ -1,0 +1,188 @@
+.full-width-table table {
+    width: 100%;
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+  
+.full-width-table th, .full-width-table td {
+    width:150px; /* Fixed width for each cell */
+    min-width: 100px; /* Ensures cell does not become smaller than this width */
+    height: 100px; /* Fixed height for each cell */
+    min-height: 100px; /* Ensures cell does not become shorter than this height */
+    overflow: hidden; /* Hides content that exceeds the cell's bounds */
+    text-align: center; /* Centers the content horizontally */
+    vertical-align: middle; /* Centers the content vertically */
+    border: 0px solid; /* Adds a border to each cell, set to 0px as optional */
+    padding: 0;
+}
+
+.full-width-table img {
+    display: block; /* Changes the image from inline to block, removing the gap */
+    width: 100%; /* Ensures the image covers the full width of the cell */
+    height: auto; /* Adjusts the height automatically to maintain aspect ratio */
+    margin: 0; /* Removes any default margin */
+}
+
+#popupWindow {
+    position: fixed;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 1000px; /* Adjust as needed */
+    height: 550px; /* Adjust as needed */
+    margin: 50px;
+    color: #ffffff;
+    background-color: #0064a6;
+    border: 4px solid rgb(6, 215, 252);
+    padding-left: 70px;
+    padding-right: 70px;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    border-radius: 15px;
+    z-index: 1000; /* Ensure it's above other content */
+    display: flex; /* Make it a flex container */
+    flex-direction: column; /* Stack children vertically */
+    overflow-y: auto; /* Enables vertical scrolling */
+}
+
+#popupWindow button {
+    position: absolute; /* Absolute positioning within the popup */
+    top: 20px;
+    right: 20px;
+    width: 40px;
+    height: 40px;
+    padding: 0;
+    font-size: 30px;
+    color: #0064a6;
+    background-color: #06d7fc;
+    border: transparent; /* Change to your desired color */
+    border-radius: 50%;
+    transform:: rotate(45deg);
+}
+
+/* customize scrollbar */
+#popupWindow::-webkit-scrollbar-track {
+    background:transparent; 
+    border-radius: 10px;
+}
+
+/* customize scrollbar */
+#popupWindow::-webkit-scrollbar-thumb {
+    background: #ffffff; 
+    border-radius: 10px; 
+}
+
+/* change scrollbar handle color on hover */
+#popupWindow::-webkit-scrollbar-thumb:hover {
+    background: #ffffff; 
+}
+
+/* customize width of scrollbar*/
+#popupWindow::-webkit-scrollbar {
+    width: 10px; 
+}
+  
+#popupContent {
+    overflow-y: auto; /* Enables vertical scrolling */
+    margin-top: 0px; /* Adds some space at the top for aesthetics */
+    margin-bottom: 0px; /* Adds some space at the bottom for aesthetics */
+    flex-grow: 1; /* Allows the content to expand and fill the available space, ensuring the button stays at the bottom */
+}
+  
+.button-cell:hover {
+    cursor: pointer;
+}
+  
+.has-popup:hover {
+    cursor: pointer;
+    text-shadow: 
+      0px 0px 5px rgb(219, 94, 244),
+      0px 0px 10px rgb(216, 70, 245),
+      0px 0px 30px rgb(216, 57, 248),
+}
+
+  
+#zoomable-container {
+      width:67vw; /* Fixed width */
+      height: 80vh; /* Fixed height */
+      overflow: auto; /* Shows scrollbars when content overflows */
+      position: relative; /* Keeps the container in a fixed position */
+      border: 2px solid #0064a6; /* Visual border around the container */
+      box-shadow: 0px 0px 10px 0px rgba(0, 101, 168, 0.8); /* Adds shadow to the border */
+      border-radius: 5px;
+      margin: 0px; /* Moves the container 20 pixels down */
+}
+
+/* customize scrollbar */
+#zoomable-container::-webkit-scrollbar-track {
+    background:transparent; 
+    border-radius: 10px;
+}
+
+/* customizescrollbar*/
+#zoomable-container::-webkit-scrollbar-track {
+    background: #0064a6; 
+    border-radius: 10px;
+}
+    
+/* customize scrollbar*/
+#zoomable-container::-webkit-scrollbar-thumb {
+    background: #28dcfc; 
+    border-radius: 10px; 
+}
+    
+/* change scrollbar handle color on hover */
+#zoomable-container::-webkit-scrollbar-thumb:hover {
+    background: #06c9eb; 
+}
+    
+/* customize width of scrollbar */
+#zoomable-container::-webkit-scrollbar {
+    width: 10px;
+    height: 10px; 
+}
+  
+#zoomable-content {
+    width: 100%; /* Full width of the container */
+    height: 100%; /* Full height of the container */
+    transform-origin: 50% 50%;
+}
+  
+.zoom-parent {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-start;
+  align-items: flex-start; /* Aligns items to the top */
+}
+
+#zoom-controls {
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0; /* Adjust this value if you want some space from the top edge of the viewport */
+  /* Removed align-self as it's not necessary with the new flex parent */
+  max-width: 35px;
+}
+
+#zoom-in, #zoom-out {
+  width: 30px;
+  
+  height: 30px;
+  font-size: 20px;
+  background-color: white;
+  border: 2px solid #0064a6; 
+  box-shadow: 0px 0px 10px 0px rgba(0, 101, 168, 0.8);
+  border-radius: 5px;
+  margin-bottom: 5px;
+  margin-right: 5px;
+  display: inline-block; /* Align the buttons horizontally */
+  margin-left: 0; /* Adds spacing between the buttons */
+}
+
+  table {
+    table-layout: fixed;
+    width: 100%; /* Ensure the table width is defined */
+  }
+
+
+
+

@@ -1,0 +1,110 @@
+.main{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    margin: 0;
+    max-width: 60%;
+}
+
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+    width: 100%;
+    margin: 0;
+}
+
+/* should change this if i dont want to be killed by isa */
+div {
+    justify-content: center;
+    align-items: center;
+}
+
+
+/* objects */
+#liposome{
+    max-width: 80%;
+    min-width: 30%;
+}
+
+#plasmid{
+    position: absolute;
+    width: 100%;
+    height: auto;
+}
+
+/* special container */
+.special{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.startpoint {
+    position: relative;
+}
+
+.plasmid_container{
+    position: absolute;
+    width: 4em;
+    height: 4em;
+    z-index: 100;
+    scale: 1;
+}
+
+.drop_container{
+    position: absolute;
+    width: 7em;
+    height: auto;
+    opacity: 0;
+}
+
+#lipid-container{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    height: auto;
+    width: 100%;
+}
+
+.bilipid{
+    display: inline-block;
+}
+
+.bilipid img {
+    width: 5px;
+    height: auto;
+}
+
+#bilipid_49{
+    position: absolute;
+}
+
+
+/* Path elements */
+.horizontal_path {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    /*background-color: lawngreen;*/
+    width: 100%;	
+    height: 10%;
+    margin: 0;
+}
+
+.vertical_path {
+    display: flex;
+    /*background-color: lawngreen;*/
+    max-width: 50%;
+    min-width: 20%;	
+    max-height: 100%;
+    margin: 0;
+}
+
+.anchor {
+    background-color: rgb(255, 0, 0);
+    width: 1px;	
+    height: 1px;
+    margin: 10rem;
+}
