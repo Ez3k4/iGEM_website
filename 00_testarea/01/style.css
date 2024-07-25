@@ -1,0 +1,33 @@
+.svg-1:hover path {
+    d: path("M955.561865,367.132465C848.480672,371.139931 782.402018,449.365962 784.565823,530.148044 C787.229884,629.606303 866.493530,714.134772 959.801270,712.220024 C1081.123779,709.730390 1137.684681,623.656836 1140.399919,551.122637 C1143.115157,478.588438 1117.547741,377.144217 964.888556,368.828226");
+}
+  
+body {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+svg {
+    width: 2000px;
+    height: 2000px;
+    background: #eee;
+    margin-bottom: 5%;
+}
+svg polyline,
+svg line,
+svg path {
+    fill: none;
+    stroke: blue;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    transition: 3s;
+    stroke-width: 10;
+}
+  
+.tracker {
+    width: 20px;
+    height: 20px;
+    background-color: red;
+    position: absolute;
+    transition: 1s;
+}
