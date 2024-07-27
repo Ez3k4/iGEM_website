@@ -22,20 +22,10 @@ function position_elements(element_class_name, path_class){
     let elements = document.querySelectorAll(`.${element_class_name}`);
     //console.log(elements)
     elements.forEach((element, index) => {
-        console.log("")
-        console.log(current_path)
-        console.log(element)
-        console.log(index)
-        const DOM_element = element.getBoundingClientRect()
-        console.log(DOM_element)
-        const svg_element = document.querySelector(".guideline")
-        console.log(svg_element)
-        const DOM_svg = svg_element.getBoundingClientRect()
-        console.log("DOM_svg")
-        console.log(DOM_svg)
+        //const DOM_element = element.getBoundingClientRect()
+        //const svg_element = document.querySelector(".guideline")
+        //const DOM_svg = svg_element.getBoundingClientRect()
         const position = current_path.getPointAtLength((index + 1) * pathLength / (elements.length + 1));
-        console.log(position)
-        console.log(current_path.getPointAtLength(index + 1))
         element.style.left = position.x + 'px';
         element.style.top = position.y + 85 + 'px';
     });
