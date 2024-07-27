@@ -14,7 +14,7 @@ function getRawPathData(path_class) {
 
     // Convert to raw path data
     let rawPathData1 = MotionPathPlugin.stringToRawPath(originalPathString1); 
-    //console.log(rawPathData1)
+    console.log(rawPathData1)
     return rawPathData1
 }
 
@@ -49,3 +49,24 @@ function adjustPath(path_class, dist_x, dist_y) {
 }
 let adjustedPath = adjustPath('path.path1', 195, -500)
 console.log(adjustedPath)
+
+let div_container = document.querySelector('.svg-1')
+let div_container_DOM = div_container.getBoundingClientRect()
+console.log(div_container_DOM)
+
+let path_container = document.querySelector('path.path1')
+let path_container_DOM = path_container.getBoundingClientRect()
+console.log(path_container_DOM)
+
+let factor_x = div_container_DOM.width / path_container_DOM.width
+let factor_y = div_container_DOM.height / path_container_DOM.height
+
+console.log(factor_x, factor_y)
+
+document.addEventListener('DOMContentLoaded', function() {
+    // Select the path element
+    const pathElement = document.querySelector('.path1');
+    
+    // Apply the transform to scale only in the x-direction
+    pathElement.setAttribute('transform', `scale(${factor_x}, ${factor_x})`);
+});
