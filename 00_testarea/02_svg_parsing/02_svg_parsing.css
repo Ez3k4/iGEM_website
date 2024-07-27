@@ -1,0 +1,28 @@
+.svg-1 {
+    stroke-width: 5;
+    fill: none;
+    width: 600px;
+    height: 1000px;
+    background-color: antiquewhite;
+    overflow: visible;
+}
+
+.path1 {
+    stroke: rgb(69, 241, 155);
+    position: absolute;
+    z-index: 1000;
+    visibility: visible;
+}
+
+.path2 {
+    stroke: rgb(226, 134, 69);
+}
+
+.destination_div {
+    top: 600px;
+    left: 0px;
+    height: 400px;
+    width: 400px;
+    background-color: cornflowerblue;
+
+}

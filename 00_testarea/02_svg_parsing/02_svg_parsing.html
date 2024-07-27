@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SVG Parsing</title>
+    <link rel="stylesheet" href="02_svg_parsing.css">
+    <script defer src="02_svg_parsing.js"></script>
+</head>
+
+<body>
+
+    <div class="lipid"></div>
+
+    <div class="destination_div"></div>
+
+    <svg class="svg-1">
+        <path class="path1" d="M 200,100 A 100,100 0 0,1 200,300" />
+        <path class="path2" d="m 200,100 A 100,100 0 0,0 200,300" />
+    </svg>
+
+ 
+
+    <script src="../gsap.min.js"></script>
+    <script src="../MotionPathPlugin.min.js"></script>
+    <script src="../ScrollTrigger.min.js"></script>
+
+</body>
+</html>
