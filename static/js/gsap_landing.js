@@ -207,6 +207,89 @@ const plasmid_width = DOM_plasmid_container.width
 const lipid_height = 60
 
 
+// ------------------- SVG shit ----------------------
+// extracts "d" attribute from given path class (has to be in quotes and path.path.class) and converts it to raw path array
+function getRawPathData(path_class) {
+    // gets path element by special class name path1
+    const pathElement1 = document.querySelector(path_class);
+    //console.log(pathElement1); 
+
+    // Original SVG path string
+    let originalPathString1 = pathElement1.getAttribute('d');
+    //console.log(originalPathString1); 
+
+    // Convert to raw path data
+    let rawPathData1 = MotionPathPlugin.stringToRawPath(originalPathString1); 
+    //console.log(rawPathData1)
+    return rawPathData1
+}
+
+
+function adjustRawPathData(rawPathData, dist_x, dist_y) {
+    // Adjust x-coordinates
+    rawPathData.forEach(subArray => {
+        for (let j = 0; j < subArray.length; j += 2) {
+            subArray[j] += dist_x;
+        }
+    });
+
+    // Adjust y-coordinates
+    rawPathData.forEach(subArray => {
+        for (let i = 1; i < subArray.length; i += 2) {
+            subArray[i] += dist_y;
+        }
+    });
+
+    return rawPathData;
+}
+
+
+function adjustPath(path_class, dist_x, dist_y) {
+
+    let rawPathData = getRawPathData(path_class)
+
+    let adjustedRawPath =  adjustRawPathData(rawPathData, dist_x, dist_y)
+
+    let adjustedPath = MotionPathPlugin.rawPathToString(adjustedRawPath)
+    return adjustedPath
+}
+let adjustedPath = adjustPath('path.path1', 195, -500)
+console.log(adjustedPath)
+
+
+
+// ------------------ Position elements on SVG ------------------------
+
+// gets path element by special class name path1
+const pathElement = document.querySelector('path.path1');
+const DOM_pathElement = pathElement.getBoundingClientRect()
+const pathTo = pathElement.dataset.pathTo; 
+
+// Function to get the current path data of an element with path by its path-classname
+// !!! path_class needs to be quotated!!!
+function getCurrentPath(path_class) {
+    return document.querySelector(path_class);
+}
+
+function position_elements(element_class_name, path_class){
+    let current_path = getCurrentPath(path_class)
+
+    let pathLength = current_path.getTotalLength();
+    let elements = document.querySelectorAll(`.${element_class_name}`);
+    console.log(elements)
+
+    elements.forEach((element, index) => {
+        const position = current_path.getPointAtLength((index + 1) * pathLength / (elements.length + 1));
+        element.style.left = position.x + 'px';
+        element.style.top = position.y - 10 + 'px';
+    });
+}
+
+document.addEventListener('DOMContentLoaded', function() {
+    position_elements('bilipid', 'path.path1');
+});
+
+
 
 window.addEventListener("scroll", () => {
 /*     let plasmid = document.getElementById("plasmid");
@@ -226,10 +309,10 @@ window.addEventListener("scroll", () => {
         console.log(`${element_id} center: ` ,element_center)
         return element_center
     }
-    track_element_center("plasmid")
-    track_element_center("bilipid_49")
+/*     track_element_center("plasmid")
+    track_element_center("bilipid_49") */
 
-    // measure distance between two elements by Id --> they must have x y coordinates
+/*     // measure distance between two elements by Id --> they must have x y coordinates
     function measure_distance(element1, element2) {
         let point1 = track_element_center(element1)
         let point2 = track_element_center(element2)
@@ -237,9 +320,9 @@ window.addEventListener("scroll", () => {
         console.log(`Distance between ${element1} and ${element2}: `, distance)
         return distance
     }
-    measure_distance("plasmid", "bilipid_49")
+    measure_distance("plasmid", "bilipid_49") */
 
-    // Ensure two elements keep a certain distance apart --> weird chatGPT shit 
+/*     // Ensure two elements keep a certain distance apart --> weird chatGPT shit 
     function keep_distance(element1_id, element2_id, min_distance) {
         let distance = measure_distance(element1_id, element2_id);
         let element1_center = track_element_center(element1_id);
@@ -271,7 +354,7 @@ window.addEventListener("scroll", () => {
         }
     }
     // Adjust distance if needed
-    keep_distance("plasmid", "bilipid_49", 80);
+    keep_distance("plasmid", "bilipid_49", 80); */
 })
 
 //############################################# WILD WEST ##########################################
@@ -304,9 +387,9 @@ class MyComponent {
 // create number of Bilipid ClassObj in a certain container with a class and a name
 
 // function to create myCompund instances as img/svgs, pass all arguments as strings
-function fill_container_with_ClassInstances(container_name, image_source, instance_name, div_class, number){
+function fill_container_with_ClassInstances(container_id, image_source, instance_name, div_class, number){
     // select container to fill over class name
-    const container = document.getElementById(container_name);
+    const container = document.getElementById(container_id);
     // create loop for number of instances
     for (let i = 0; i < number; i++) {
       // create instance by using the fukkking constructor and giving him arguments from function
@@ -319,7 +402,7 @@ function fill_container_with_ClassInstances(container_name, image_source, instan
     }
   }
   
-  fill_container_with_ClassInstances("lipid-container", "https://static.igem.wiki/teams/5057/bilipid-b.svg", "bilipid", "bilipid", 100)
+  fill_container_with_ClassInstances("svg-2", "https://static.igem.wiki/teams/5057/bilipid-b.svg", "bilipid", "bilipid", 5)
 
 
 

@@ -66,21 +66,42 @@ div {
     align-items: center;
     height: auto;
     width: 100%;
+    background-color: aquamarine;
 }
 
 .bilipid{
-    display: inline-block;
+    position: absolute;
+    z-index: 1010;
+    width: 5px;
+    height: 10px;
 }
 
 .bilipid img {
     width: 5px;
-    height: auto;
+    height: 10px;
 }
 
-#bilipid_49{
+.svg-container {
+    background-color: beige;
+}
+
+#svg-2 {
+    position: relative;
+}
+
+.svg-1 {
+    stroke-width: 5;
+    fill: none;
+    background-color: antiquewhite;
+    overflow: visible;
+}
+
+.path1 {
+    stroke: rgb(69, 241, 155);
+    z-index: 1000;
+    visibility: visible;
     position: absolute;
 }
-
 
 /* Path elements */
 .horizontal_path {
@@ -95,7 +116,7 @@ div {
 
 .vertical_path {
     display: flex;
-    /*background-color: lawngreen;*/
+    background-color: rgb(212, 255, 168);
     max-width: 50%;
     min-width: 20%;	
     max-height: 100%;
