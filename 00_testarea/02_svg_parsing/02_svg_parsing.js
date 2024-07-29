@@ -3,7 +3,7 @@ gsap.registerPlugin(MotionPathPlugin, ScrollTrigger);
 
 
 // extracts "d" attribute from given path class (has to be in quotes and path.path.class) and converts it to raw path array
-function getRawPath(path_class) {
+function getRawPathData(path_class) {
     // gets path element by special class name path1
     const pathElement1 = document.querySelector(path_class);
     //console.log(pathElement1); 
@@ -40,7 +40,7 @@ function adjustRawPathData(rawPathData, dist_x, dist_y) {
 
 function adjustPath(path_class, dist_x, dist_y) {
 
-    let rawPathData = getRawPath(path_class)
+    let rawPathData = getRawPathData(path_class)
 
     let adjustedRawPath =  adjustRawPathData(rawPathData, dist_x, dist_y)
 
